@@ -1,7 +1,7 @@
 # Stream-Player
 
 # Authors
-Al Khalfaoui Ismael
 Galizzi Victor
+Khalfaoui Hassani Ismail
 Puig Martin
 Sun Christophe
