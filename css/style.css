@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 5px;
+}
+
+video, canvas, image {
+	width: : 100px;
+	height: 200px;
+	background-color: #000;
+}
+
+h1 {
+	  font-size: 14px;
+}
