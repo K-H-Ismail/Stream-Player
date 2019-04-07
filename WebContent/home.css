@@ -1,0 +1,37 @@
+h1 {
+	text-align: center
+}
+
+.page-name {
+	margin-left: auto;
+	margin-right: auto;
+	color: rgb(18, 96, 101);
+}
+
+.input-group-btn {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#text-box {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 30em;
+	height: 18em;
+	margin-top: -9em; /*set to a negative number 1/2 of your height*/
+	margin-left: -15em; /*set to a negative number 1/2 of your width*/
+}
+
+.bg-image {
+	width: 1300px;
+	height: 800px;
+	/* Full height */
+	height: 100%;
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	opacity: 0.5;
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 70%, rgba(255,255,255,1) 100%), url(index.jpeg);
+}
