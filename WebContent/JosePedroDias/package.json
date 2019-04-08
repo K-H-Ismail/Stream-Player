@@ -1,0 +1,13 @@
+{
+  "name": "record",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serve.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^0.9.0",
+    "msr": "^1.2.2"
+  }
+}
