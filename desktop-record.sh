@@ -1,5 +1,5 @@
 # to record a video(any format) film use:
-ffmpeg -i ~/dwhelper/film.mp4  -c:v h264 -c:a aac  -strict -2 -f flv "rtmp://localhost:1935/live/" 
+ffmpeg -i ~/film.mp4  -c:v h264 -c:a aac  -strict -2 -f flv "rtmp://localhost:1935/live/" 
 
 
 # to record pc screen use:
