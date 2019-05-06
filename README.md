@@ -23,7 +23,7 @@ rm openssl-1.1.1b.tar.gz
 ## Build nginx with nginx-rtmp
 
 cd nginx-1.15.12 
-./configure --prefix=~ --with-openssl=../openssl-1.1.1b --with-http_ssl_module --add-module=../nginx-rtmp-module  
+./configure --prefix=~ --with-openssl=../openssl-1.1.1b --with-http_ssl_module --add-module=../nginx-rtmp-module    
 make  
 make install  
 
