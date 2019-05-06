@@ -16,7 +16,7 @@ tar -xzvf nginx-1.15.12.tar.gz
 cd nginx-1.15.12  
 ## Build nginx with nginx-rtmp
 
-sudo ./configure --with-http_ssl_module --add-module=../nginx-rtmp-module  
+sudo ./configure --with-openssl=/usr/bin/openssl --with-http_ssl_module --add-module=../nginx-rtmp-module  
 sudo make  
 sudo make install  
 
