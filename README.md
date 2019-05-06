@@ -22,21 +22,22 @@ rm openssl-1.1.1b.tar.gz
 
 ## Build nginx with nginx-rtmp
 
-cd nginx-1.15.12 
-./configure --prefix=/home/ikhalfao --with-openssl=../openssl-1.1.1b --with-http_ssl_module --add-module=../nginx-rtmp-module    
+mkdir ~/nginx  
+cd nginx-1.15.12  
+./configure --prefix=/home/ikhalfao/nginx --with-openssl=../openssl-1.1.1b --with-http_ssl_module --add-module=../nginx-rtmp-module      
 make  
 make install  
 
 ## Configure your server
-change /usr/local/nginx/conf/nginx.conf by the conf present  
-in the repo (create a dir in /tmp called hls and under it hls/live)  
+change conf/nginx.conf by the conf present in the repo -> mv git/nginx.conf ~/nginx/conf  
+create a dir in /tmp called hls and under it hls/live -> mkdir -p "/tmp/hls/live"  
 
 ## Add html sources 
-under /usr/local/nginx/html/  
+to add under ~/nginx/html/  
 
 ## Start/stop/reload nginx Server
 
-/usr/local/nginx/sbin/nginx  
-/usr/local/nginx/sbin/nginx -s stop  
-/usr/local/nginx/sbin/nginx -s reload  
+~/nginx/sbin/nginx  
+~/nginx/sbin/nginx -s stop  
+~/nginx/sbin/nginx -s reload  
 
