@@ -8,7 +8,7 @@
 <body>
 	<div class="login-page">
 		<div class="form">
-			<form class="login-form" method="post">
+			<form class="login-form" method="post" action="../Servlet">
 				<input type="text" placeholder="name" name="un" /> <input
 					type="password" placeholder="password" name="pw" />
 				<button>login</button>

@@ -46,15 +46,13 @@ public class Servlet extends HttpServlet {
 		String op = request.getParameter("op");
 		ServletContext context = getServletContext( );
 		context.log("This is a log item");
+		
 		if (op.equals("ajoutCompte")) {
 			String login = request.getParameter("login");
 			String password = request.getParameter("password");
 			String email = request.getParameter("email");
 			facade.ajoutCompte(login,password,email);
-			response.getWriter().println("<meta http-equiv='refresh' content='0; ../index.html\' />");
-		}
-		if (op.equals("login")) {
-			request.getRequestDispatcher("loginPage.jsp").forward(request, response);
+			response.getWriter().println("<meta http-equiv='refresh' content='0; index.html\' />");
 		}
 
 		if (op.equals("connection")) {
@@ -63,9 +61,9 @@ public class Servlet extends HttpServlet {
 			Compte compte = facade.chercherCompte(login, password);
 			if (compte != null) {
 				request.setAttribute("login", login);
-				request.getRequestDispatcher("loginSuccess.jsp").forward(request, response);
+				request.getRequestDispatcher("signup/loginSuccess.jsp").forward(request, response);
 			} else {
-				request.getRequestDispatcher("loginInvalid.jsp").forward(request, response);
+				request.getRequestDispatcher("signup/loginInvalid.jsp").forward(request, response);
 			}
 
 		}
