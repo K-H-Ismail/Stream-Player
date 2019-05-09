@@ -1,9 +1,14 @@
 package pack;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Compte {
@@ -16,6 +21,10 @@ public class Compte {
 	private String password;
 	private String email;
 
+	@OneToMany(fetch=FetchType.EAGER)
+	public Collection<Compte> amis ;
+
+
 	public Compte() {
 	}
 
@@ -23,7 +32,7 @@ public class Compte {
 		this.login = login;
 		this.password = password;
 	}
-	
+
 	public Compte(String login, String password, String email) {
 		this.login = login;
 		this.password = password;
@@ -56,6 +65,14 @@ public class Compte {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public ArrayList<Compte> getAmis() {
+		return new ArrayList<Compte>(amis);
+	}
+
+	public void setAmi(Compte p) {
+		this.amis.add(p);
 	}
 
 }

@@ -61,7 +61,7 @@ public class Servlet extends HttpServlet {
 		String op = request.getParameter("op");
 		ServletContext context = getServletContext();
 		context.log("This is a log item");
-		
+
 		if (op.equals("ajoutCompte")) {
 
 			/* Préparation de l'objet formulaire */
@@ -91,9 +91,9 @@ public class Servlet extends HttpServlet {
 
 			/* Traitement de la requête et récupération du bean résultant */
 			Utilisateur utilisateur = form.connecterUtilisateur(request);
-			
+
 			facade.verifierCompte(utilisateur);
-			
+
 			if (utilisateur.isValid()) {
 
 				/* Récupération de la session depuis la requête */
@@ -107,14 +107,32 @@ public class Servlet extends HttpServlet {
 				//request.setAttribute(ATT_USER, utilisateur);
 
 				request.getRequestDispatcher(VUE_PERSO).forward(request, response);
-				
+
 			} else {
 				request.getRequestDispatcher(VUE_ERR_CO).forward(request, response);
 			}
 		}
 
+		if (op.equals("add_friend")) {
+
+			/* Récupération de la session depuis la requête */
+			HttpSession session = request.getSession();
+
+			Utilisateur utilisateur = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
+			Compte c = facade.chercherCompte(utilisateur);
+
+			String login = request.getParameter("login");
+			Compte a_ajouter = facade.chercherCompte(login);
+
+			/* ajout du compte ami */
+			c.setAmi(a_ajouter);
+
+			response.sendRedirect(request.getContextPath()+"/pagePerso/pagePerso1.jsp");
+
+		}
+
 		if (op.equals("logout")) {
-			
+
 			/* Récupération et destruction de la session en cours */
 			HttpSession session = request.getSession();
 			session.invalidate();
