@@ -9,8 +9,8 @@
 	<div class="login-page">
 		<div class="form">
 			<form class="login-form" method="post" action="../Servlet">
-				<input type="text" placeholder="name" name="un" /> <input
-					type="password" placeholder="password" name="pw" />
+				<input type="text" placeholder="login" name="login" /> 
+				<input type="password" placeholder="password" name="password" />
 				<button>login</button>
 				<input type="hidden" name="op" value="connection">
 				<p class="message">

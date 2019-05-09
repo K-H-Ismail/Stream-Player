@@ -15,8 +15,7 @@ public class Facade {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public void ajoutCompte(String login, String password, String email) {
-		Compte c = new Compte(login,password,email);
+	public void ajoutCompte(Compte c) {
 		em.persist(c);
 	}
 	
@@ -25,13 +24,15 @@ public class Facade {
 		return req.getResultList();
 	}
 	
-	public Compte chercherCompte(String login, String password) {
-		Query query = em.createQuery("select c from Compte c where c.login = :login and c.password = :password");
+	public void verifierCompte(Utilisateur utilisateur) {
+		String login = utilisateur.getLogin();
+		String password = utilisateur.getPassword();
+		Query query = em.createQuery("select c from Compte c where c.login=:login and c.password=:password");
 		query.setParameter("login", login);
 		query.setParameter("password", password);		
 		List<Compte> req = (List<Compte>) query.getResultList();
-		if (req.isEmpty()) return null;
-		return req.get(0);
+		if (req.isEmpty()) utilisateur.setValid(false);
+		else utilisateur.setValid(true);
 	}
 	
 	public boolean existe(Compte compte) {
@@ -42,7 +43,7 @@ public class Facade {
 		Compte c = em.find(Compte.class, num);
 		if (c == null) throw new RuntimeException("Compte introuvable");
 		return c;
-		}
+	}
 	
 }
 	

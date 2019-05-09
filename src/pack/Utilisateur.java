@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Compte {
+public class Utilisateur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,21 +14,20 @@ public class Compte {
 
 	private String login;
 	private String password;
-	private String email;
+	private boolean valid;
 
-	public Compte() {
+	public Utilisateur() {
+	}
+	
+	public Utilisateur(String login) {
+		this.login = login;
 	}
 
-	public Compte(String login, String password) {
+	public Utilisateur(String login, String password) {
 		this.login = login;
 		this.password = password;
 	}
 	
-	public Compte(String login, String password, String email) {
-		this.login = login;
-		this.password = password;
-		this.email = email;
-	}
 
 	public int getId() {
 		return this.num;
@@ -50,12 +49,12 @@ public class Compte {
 		this.password = password;
 	}
 
-	public String getEmail() {
-		return this.email;
+	public boolean isValid() {
+		return valid;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 
 }
