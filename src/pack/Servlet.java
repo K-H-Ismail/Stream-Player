@@ -30,6 +30,8 @@ public class Servlet extends HttpServlet {
 
 	@EJB
 	Facade facade = new Facade();
+	@EJB
+	FacadeChat facadeChat = new FacadeChat();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -139,6 +141,19 @@ public class Servlet extends HttpServlet {
 
 			/* Redirection vers la page d'accueil */
 			response.sendRedirect(request.getContextPath() + "/" + VUE);
+		}
+		
+		if (op.equals("connecChat")){
+			request.setAttribute("listeMessage", facadeChat.messages());			
+			request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
+		}
+		
+		if (op.equals("newMsg")){
+			String message = request.getParameter("message");
+			String user = request.getParameter("pseudo");
+			facadeChat.ajoutMessage(new Message(user, message));
+			request.setAttribute("listeMessage", facadeChat.messages());			
+			request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
 		}
 	}
 
