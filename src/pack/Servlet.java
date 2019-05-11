@@ -73,8 +73,8 @@ public class Servlet extends HttpServlet {
 			Compte compte = form.creerCompte(request);
 
 			/* Ajout du bean et de l'objet métier à l'objet requête */
-			//request.setAttribute(ATT_CLIENT, compte);
-			//request.setAttribute(ATT_FORM, form);
+			request.setAttribute(ATT_CLIENT, compte);
+			request.setAttribute(ATT_FORM, form);
 
 			if (form.getErreurs().isEmpty()) {
 				facade.ajoutCompte(compte);
@@ -105,8 +105,8 @@ public class Servlet extends HttpServlet {
 				session.setAttribute(ATT_SESSION_USER, utilisateur);
 
 				/* Stockage du formulaire et du bean dans l'objet request */
-				//request.setAttribute(ATT_FORM, form);
-				//request.setAttribute(ATT_USER, utilisateur);
+				request.setAttribute(ATT_FORM, form);
+				request.setAttribute(ATT_USER, utilisateur);
 
 				request.getRequestDispatcher(VUE_PERSO).forward(request, response);
 
