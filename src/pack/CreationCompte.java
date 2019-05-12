@@ -71,12 +71,16 @@ public final class CreationCompte {
 	private void validationPassword(String password) throws Exception {
 		if (password != null && password.length() < 2) {
 			throw new Exception("Le mot de passe doit contenir au moins 2 caractères.");
+		} else {
+			throw new Exception("Merci de saisir un mot de passe.");
 		}
 	}
 
 	private void validationEmail(String email) throws Exception {
 		if (email != null && !email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
 			throw new Exception("Merci de saisir une adresse mail valide.");
+		} else {
+			throw new Exception("Merci d'entrer une adresse mail.");
 		}
 	}
 
