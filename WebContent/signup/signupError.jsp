@@ -17,7 +17,9 @@
 	%>
 	
 	<div class="login-page">
+		
 		<div class="form">
+			<h1>Inscription</h1>
 			<form class="register-form" method="post" action="Servlet">
 				<input type="text" placeholder="login" name="login" /> 
 				
