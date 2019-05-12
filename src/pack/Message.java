@@ -15,16 +15,12 @@ public class Message {
 	String user;
 	String text;
 
-
-	
 	public Message(){
-		
 	}
 	
 	public Message(String user, String text){
 		this.user = user;
 		this.text = text;
-		
 	}
 	
 	public int getId() {
@@ -48,7 +44,6 @@ public class Message {
 	public String getText() {
 		return text;
 	}
-
 
 	public void setText(String text) {
 		this.text = text;

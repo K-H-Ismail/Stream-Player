@@ -20,11 +20,14 @@ public class Compte {
 	private String login;
 	private String password;
 	private String email;
-
+	private String image = "profile-pic.png";
 	@OneToMany(fetch=FetchType.EAGER)
 	public Collection<Compte> amis ;
 
-
+	@OneToMany(fetch=FetchType.EAGER)
+	public Collection<Fichier> fichiers ;
+	
+	
 	public Compte() {
 	}
 
@@ -73,6 +76,14 @@ public class Compte {
 
 	public void setAmi(Compte p) {
 		this.amis.add(p);
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

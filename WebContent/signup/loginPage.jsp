@@ -12,7 +12,7 @@
 				<input type="text" placeholder="login" name="login" /> 
 				<input type="password" placeholder="password" name="password" />
 				<button>login</button>
-				<input type="hidden" name="op" value="connection">
+				<input type="hidden" name="op" value="connexion">
 				<p class="message">
 					Not registered? <a href="signup.html">Create an account</a>
 				</p>

@@ -18,11 +18,40 @@ public class Facade {
 	public void ajoutCompte(Compte c) {
 		em.persist(c);
 	}
+	
+	public void ajoutUtilisateur(Utilisateur u) {
+		em.persist(u);
+	}
+	
+	public void ajoutFichier(Fichier f) {
+		em.persist(f);
+	}
 
+	public void ajoutCategorie(Categorie cat) {
+		em.persist(cat);
+	}
+	
+	public void ajoutSalon(Salon s) {
+		em.persist(s);
+	}
+	
 	public Collection<Compte> listeCompte() {
 		TypedQuery<Compte> req = em.createQuery("select c from Compte c", Compte.class);
 		return req.getResultList();
 	}
+	
+	
+	public Collection<Categorie> listeCategorie() {
+		TypedQuery<Categorie> req = em.createQuery("select c from Categorie c", Categorie.class);
+		return req.getResultList();
+	}
+	
+	
+	public Collection<Salon> listeSalon() {
+		TypedQuery<Salon> req = em.createQuery("select s from Salon s", Salon.class);
+		return req.getResultList();
+	}
+	
 
 	public void verifierCompte(Utilisateur utilisateur) {
 		String login = utilisateur.getLogin();
@@ -64,5 +93,13 @@ public class Facade {
 		return c;
 	}
 
+	public Categorie chercherCategorie(String nom){
+		Query query = em.createQuery("select c from Categorie c where c.nom=:nom");
+		query.setParameter("nom", nom);
+		Categorie c = (Categorie) query.getSingleResult();
+		if (c == null) throw new RuntimeException("Catégorie introuvable");
+		return c;
+	}
+	
 }
 

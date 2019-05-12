@@ -41,8 +41,8 @@ public class Restriction implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         /* Cast des objets request et response */
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
-
+        HttpServletResponse res = (HttpServletResponse) response; 
+        
         /* Récupération de la session depuis la requête */
         HttpSession session = req.getSession();
 

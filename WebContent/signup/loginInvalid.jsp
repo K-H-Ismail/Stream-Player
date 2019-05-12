@@ -7,6 +7,6 @@
 <title>Invalid login</title>
 </head>
 <body>
- 	<center> Sorry, you are not a registered user! Please sign up first </center>
+ 	<center> Sorry, you are not a registered user! Please <a href="signup/signup.html">sign up</a> first </center>
 </body>
 </html>
