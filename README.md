@@ -7,7 +7,7 @@ Puig Martin,
 Sun Christophe.  
 
 ## Download & unpack latest nginx-rtmp 
-mkdir ~/build && cd build/
+mkdir ~/build && cd build/  
 git clone git://github.com/arut/nginx-rtmp-module.git  
 
 ## Download nginx
