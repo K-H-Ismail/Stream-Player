@@ -130,6 +130,11 @@ a,a:visited {
   color: white;
 }
 
+
+.topnav-right {
+  float: right;
+}
+
 .topnav .login-container {
   float: right;
 }

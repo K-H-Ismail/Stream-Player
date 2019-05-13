@@ -45,7 +45,7 @@ public class Restriction implements Filter {
         
         /* Récupération de la session depuis la requête */
         HttpSession session = req.getSession();
-
+        
         /**
          * Si l'objet utilisateur n'existe pas dans la session en cours, alors
          * l'utilisateur n'est pas connecté.
