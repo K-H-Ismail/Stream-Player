@@ -1,0 +1,116 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+.chatConnect {
+  display : block;	
+  width : 306px;
+  height : 170px;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+ #connectArea {
+  width: 279px;
+  border: none;
+  position : fixed;
+  background: #f1f1f1;
+  max-height : 40px;
+  resize: none;
+  right : 29px;
+  bottom : 80px;
+
+}
+
+
+.chat-popup {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  width: 300px;
+  padding: 10px;
+  background-color: white;
+  bottom: 0px;
+  margin-bottom: 70px
+  
+  
+}
+ #chatArea {
+  width: 100%;
+  overflow-y: scroll;
+  padding: 15px;
+  margin: 5px 0 8px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  height: 200px;
+}
+
+ #messageArea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 8px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  height: 50px;
+  bottom : 500px;
+}
+
+
+#message{
+	width:100%;}
+
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: #0277bd;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  bottom: 25px;
+  opacity: 0.8;
+}
+
+.form-container .cancel {
+  background-color: red;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  opacity : 1;
+  cursor: pointer;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
