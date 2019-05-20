@@ -1,6 +1,8 @@
 package pack;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletContext;
@@ -51,6 +53,10 @@ public class Servlet extends HttpServlet {
 	Facade facade = new Facade();
 	@EJB
 	FacadeChat facadeChat = new FacadeChat();
+	
+	  SimpleDateFormat formatHeure = new SimpleDateFormat("HH:mm"); 	 
+	  Indicateur ind = new Indicateur();
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -242,15 +248,26 @@ public class Servlet extends HttpServlet {
 		}
 		
 		
-		if (op.equals("connecChat")){
-			request.setAttribute("listeMessage", facadeChat.messages());			
+		if (op.equals("connectChat")){
+			request.setAttribute("listeMessage", facadeChat.messages());				
+			request.setAttribute("nvMessage",ind);
 			request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
+
 		}
 		
 		if (op.equals("newMsg")){
+			Date now = new Date();	
 			String message = request.getParameter("message");
 			String user = request.getParameter("pseudo");
-			facadeChat.ajoutMessage(new Message(user, message));
+			String heure = formatHeure.format(now);
+			request.setAttribute("nvMessage",ind);		
+			facadeChat.ajoutMessage(new Message(user, message, heure));
+			request.setAttribute("listeMessage", facadeChat.messages());			
+			request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
+		}
+		if (op.equals("refresh")){
+
+			request.setAttribute("nvMessage",ind);		
 			request.setAttribute("listeMessage", facadeChat.messages());			
 			request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
 		}

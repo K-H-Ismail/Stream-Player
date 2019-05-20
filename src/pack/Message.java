@@ -14,15 +14,25 @@ public class Message {
 	int id;
 	String user;
 	String text;
+	String date;
 
 	public Message(){
 	}
 	
-	public Message(String user, String text){
+	public Message(String user, String text, String date){
 		this.user = user;
 		this.text = text;
+		this.date = date;
 	}
 	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public int getId() {
 		return id;
 	}
