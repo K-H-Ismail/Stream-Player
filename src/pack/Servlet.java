@@ -3,6 +3,7 @@ package pack;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -272,10 +273,10 @@ public class Servlet extends HttpServlet {
 			String user = request.getParameter("pseudo");
 			String heure = formatHeure.format(now);
 			facadeChat.ajoutMessage(new Message(user, message, heure));
-			facadeChat.ajoutMessage(new Message(user, message, heure));
 			response.setContentType("text/xml");
 			response.getWriter().write("<div class=\"message\" name=\"messageName\"> ("+heure+") <B>"+user+"</B> : "+message+" </div>");
 		}
+		if (op.equals("refresh")){
 			//request.setAttribute("nvMessage",ind);		
 			//request.setAttribute("listeMessage", facadeChat.messages());			
 			//request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
