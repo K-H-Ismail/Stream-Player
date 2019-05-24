@@ -11,6 +11,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="chat/js/main.js"></script>
+
 <link rel="stylesheet" href="chat/css/style.css">
 
 <title>Chat</title>
@@ -22,9 +24,13 @@
 	  Indicateur ind = (Indicateur) request.getAttribute("nvMessage");
  	 %>
 
-	
 	<div class="chat-popup" id="myForm">
-	  <form action="Servlet" method="get" class="form-container">
+		<div>
+		 <button type="button" onclick="etatChat()"> Refresh</button>
+		
+		</div>
+	
+	  <form class="form-container" name="formEnvoi"> 
 	  	<input type="hidden" name=op value=newMsg> 
 	  	<input type="hidden" name=pseudo value=<%=pseudo %>> 			
 	  
@@ -32,7 +38,7 @@
 	
 		<h2> <%=ind.getnvMessage()%></h2>
 		
-	    <div id ="chatArea" > 
+	    <div id="chatArea" > 
 	    				<%
 					Collection<Message> listeMessage = (Collection<Message>) request.getAttribute("listeMessage");
 					for (Message m : listeMessage) {
@@ -47,17 +53,19 @@
 							text = "reussiFalse";
 						}
 				%>
-				<div id="message"> 
+				<div class="message" name="messageName"> 
 				(<%=heure%>) <B><%=user%></B> : <%=text%> 
 				 </div>
 				 
 				 <%}%>  
+				 
+				 
 	    </div>
 	
-	    <textarea id="messageArea" placeholder="Type message.." name="message" required></textarea>
+	    <textarea id="messageArea" placeholder="Type message.." name="message"></textarea>
 	
-	    <button type="submit" class="btn">Send</button>
-	    <button type="button" class="btn cancel" onclick="closeForm()"> Disconnect</button>
+	    <button type="button" class="btn" onclick="envoi(formEnvoi)">Send</button>
+	    <button type="button" class="btn cancel"> Disconnect</button>
 	  </form>
 	  
 	</div>
