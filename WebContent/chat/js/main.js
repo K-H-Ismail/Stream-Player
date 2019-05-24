@@ -8,7 +8,7 @@ function envoi(formEnvoi){
 		document.getElementById("messageArea").value="";
 		etatChat();
 		pseudo = document.formEnvoi.pseudo.value;
-		var url ="Servlet?op=newMsg&pseudo="+pseudo+"&message="+msg;
+		var url ="Servlet?op=newMsg&pseudo="+pseudo+"&message="+msg+"&idChat=1";
 		requete = new XMLHttpRequest();
 		requete.open("GET",url,true);
 		requete.onreadystatechange = callbackEnvoi;
@@ -31,11 +31,9 @@ function callbackEnvoi(){
 	
 }
 
-
-
 //function refresh
 function refresh(ind){
-	var url ="Servlet?op=refresh&ind="+ind;
+	var url ="Servlet?op=refresh&ind="+ind+"&idChat=1";
 	requete = new XMLHttpRequest();
 	requete.open("GET",url,true);
 	requete.onreadystatechange = majChat;
@@ -65,7 +63,7 @@ function nbElement(){
 }
 
 function etatChat(){
-	var url ="Servlet?op=nbMessage";
+ 	var url ="Servlet?op=nbMessage&idChat=1";
 	requete = new XMLHttpRequest();
 	requete.open("GET",url,true);
 	requete.onreadystatechange = callbacketatChat;
@@ -75,20 +73,16 @@ function etatChat(){
 function callbacketatChat(){
 
 	if (requete.readyState == 4) {
- 		if (requete.status == 200) {
+ 		if (requete.status == 200){
 			nb = nbElement();
 			if(requete.responseText>nb){
 				refresh(nb);			
 			}	 
-		} 
-		else {
-			alert('Une erreur est survenue du compte des messages');
-		}
-	
+ 		}
 	}
 }
 
-setInterval(etatChat,100)
+setInterval(etatChat,1000);
 
 
 
