@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Message {
@@ -12,6 +13,9 @@ public class Message {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	int id;
 	
+	@ManyToOne
+	private Chat chat;
+	
 	String user;
 	String text;
 	String date;
@@ -19,6 +23,14 @@ public class Message {
 	public Message(){
 	}
 	
+	public Chat getChat() {
+		return chat;
+	}
+
+	public void setChat(Chat chat) {
+		this.chat = chat;
+	}
+
 	public Message(String user, String text, String date){
 		this.user = user;
 		this.text = text;
@@ -59,6 +71,6 @@ public class Message {
 		this.text = text;
 	}
 
-
+	
 	
 }
