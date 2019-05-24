@@ -10,7 +10,7 @@
 <body>
 	<div class="topnav">
 		<a class="active" href="index.html">Accueil</a> 
-		<a href="pagePerso/profile.jsp">Profil</a>
+		<a href="Servlet?op=profile">Profil</a>
 		<div class="topnav-right">
 			<a href="Servlet?op=logout">Se déconnecter</a>
 		</div>
