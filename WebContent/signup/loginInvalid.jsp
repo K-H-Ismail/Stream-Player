@@ -7,6 +7,12 @@
 <title>Invalid login</title>
 </head>
 <body>
+
+	<div class="topnav">
+		<a class="active" href="../index.html">Accueil</a> <a href="./signup.html">Inscription</a> <a
+			href="./loginPage.jsp">Connexion</a>
+	</div>
+	
  	<center> Sorry, you are not a registered user! Please <a href="signup/signup.html">sign up</a> first </center>
 </body>
 </html>

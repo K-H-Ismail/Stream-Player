@@ -14,19 +14,17 @@
 		String erreurFichier = erreurs.get("fichier");
 	%>
 	
-	<form method="post" enctype="multipart/form-data" action="Servlet">
-	<p>
+	<form method="post" enctype="multipart/form-data" action="../Servlet">
 		<input type="text" placeholder="description" name="description" />
 		<% if (erreurDescription!= null) {%>
-		<span class="erreur"> <br> <%=erreurDescription%> </span> 
+		<span class="erreur"> <%=erreurDescription%> </span> 
 		<%} %>
-	</p>
-	<p>	
+		
 		<input type="file" id="fichier" name="fichier" />
 		<% if (erreurFichier!= null) {%>
-		<span class="erreur"> <br> <%=erreurFichier%> </span> 
+		<span class="erreur"> <%=erreurFichier%> </span> 
 		<%} %>
-	</p>
+		
 	    <input type="submit" value="Envoyer" /> 
 	    <input type="hidden" name="op" value="upload">
 	</form>
