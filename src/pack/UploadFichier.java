@@ -59,12 +59,6 @@ public final class UploadFichier {
              */
             if ( nomFichier != null && !nomFichier.isEmpty() ) {
                 /*
-                 * Antibug pour Internet Explorer, qui transmet pour une
-                 * raison mystique le chemin du fichier local à la machine
-                 * du client...
-                 * 
-                 * Ex : C:/dossier/sous-dossier/fichier.ext
-                 * 
                  * On doit donc faire en sorte de ne sélectionner que le nom
                  * et l'extension du fichier, et de se débarrasser du
                  * superflu.

@@ -21,9 +21,12 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Servlet
  */
-@WebServlet(urlPatterns = { "/Servlet" }, initParams = { @WebInitParam(name = "chemin", value = "/home/csun/") })
-@MultipartConfig(location = "/tmp", fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024
-		* 5, maxRequestSize = 1024 * 1024 * 5 * 5)
+@WebServlet(urlPatterns = { "/Servlet" }, 
+			initParams = { @WebInitParam(name = "chemin", value = "/tmp/") })
+@MultipartConfig(location = "/tmp/", 
+				 fileSizeThreshold = 1024 * 1024,
+				 maxFileSize = 1024 * 1024 * 5,
+				 maxRequestSize = 1024 * 1024 * 5 * 5)
 public class Servlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -43,6 +46,7 @@ public class Servlet extends HttpServlet {
 	public static final String VUE_ERR_UPLOAD = "pagePerso/uploadError.jsp";
 
 	public static final String VUE_PERSO = "pagePerso/pagePerso1.jsp";
+	public static final String VUE_PROFIL = "pagePerso/profile.jsp";
 	public static final String VUE_CATEGORIE = "pagePerso/ajoutCategorie.html";
 	public static final String VUE_CREER_SALON = "pagePerso/creerSalon.jsp";
 	public static final String VUE_JOIN_SALON = "pagePerso/rejoindreSalon.jsp";
@@ -84,8 +88,7 @@ public class Servlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String op = request.getParameter("op");
-		ServletContext context = getServletContext();
-		context.log("This is a log item");
+
 
 		if (op.equals("ajoutCompte")) {
 
@@ -166,33 +169,40 @@ public class Servlet extends HttpServlet {
 
 			request.getRequestDispatcher(VUE_PERSO).forward(request, response);
 		}
+		
+		if (op.equals("profile")) {
+			
+			/* Récupération de la session depuis la requête */
+			HttpSession session = request.getSession();
+			Utilisateur utilisateur = (Utilisateur) session.getAttribute(SESSION_USER);
+			Compte compteCourant = facade.chercherCompte(utilisateur);
+			request.setAttribute("compte",compteCourant);
+			request.getRequestDispatcher(VUE_PROFIL).forward(request, response);
+		}
 
 		if (op.equals("upload")) {
 
-			HttpSession session = request.getSession();
-
-			Utilisateur utilisateur = (Utilisateur) session.getAttribute(SESSION_USER);
-			Compte compteCourant = facade.chercherCompte(utilisateur);
-
-			/*
-			 * Lecture du paramètre 'chemin' passé à la servlet via @WebInitParam
-			 */
+			/* Lecture du paramètre 'chemin' passé à la servlet via @WebInitParam */
 			String chemin = this.getServletConfig().getInitParameter(CHEMIN);
 
 			/* Préparation de l'objet formulaire */
 			UploadFichier form = new UploadFichier();
 
-			/* Traitement de la requête et récupération du bean en résultant */
+			/* Traitement de la requête et récupération du bean résultant */
 			Fichier fichier = form.enregistrerFichier(request, chemin);
+			
+			request.setAttribute(FORM, form);
+			request.setAttribute(FICHIER, fichier);
 
 			if (form.getErreurs().isEmpty()) {
+				
+				HttpSession session = request.getSession();
 
-				facade.ajoutFichier(fichier, compteCourant.getId());
+				Utilisateur utilisateur = (Utilisateur) session.getAttribute(SESSION_USER);
+				Compte compteCourant = facade.chercherCompte(utilisateur);
 
-				/* Stockage du formulaire et du bean dans l'objet request */
-				request.setAttribute(FORM, form);
-				request.setAttribute(FICHIER, fichier);
-
+				facade.ajoutFichier(fichier, compteCourant.getId());			
+				
 				request.getRequestDispatcher(VUE_PERSO).forward(request, response);
 			} else {
 				request.getRequestDispatcher(VUE_ERR_UPLOAD).forward(request, response);
