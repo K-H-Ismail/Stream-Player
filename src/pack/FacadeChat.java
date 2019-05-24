@@ -24,6 +24,10 @@ public class FacadeChat {
 		return req.getResultList();
 	}
 	
-	
+	public Collection<Message> messagesInd(int indDernier) {
+		TypedQuery<Message> req = em.createQuery("select m from Message m", Message.class);
+		int len = req.getResultList().size();
+		return req.getResultList().subList(indDernier, len);
+	}	
 }
 	

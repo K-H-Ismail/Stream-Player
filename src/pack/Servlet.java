@@ -271,19 +271,42 @@ public class Servlet extends HttpServlet {
 			String message = request.getParameter("message");
 			String user = request.getParameter("pseudo");
 			String heure = formatHeure.format(now);
-			request.setAttribute("nvMessage", ind);
 			facadeChat.ajoutMessage(new Message(user, message, heure));
-			request.setAttribute("listeMessage", facadeChat.messages());
-			request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
+			facadeChat.ajoutMessage(new Message(user, message, heure));
+			response.setContentType("text/xml");
+			response.getWriter().write("<div class=\"message\" name=\"messageName\"> ("+heure+") <B>"+user+"</B> : "+message+" </div>");
+		}
+			//request.setAttribute("nvMessage",ind);		
+			//request.setAttribute("listeMessage", facadeChat.messages());			
+			//request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
+			response.setContentType("text/xml");
+			int indice = Integer.parseInt(request.getParameter("ind"));
+			Collection <Message> listeMessage = facadeChat.messagesInd(indice); 
+			String nvMessages = new String() ;
+			String message;
+			String user;
+			String heure;
+			for (Message msg : listeMessage){
+				heure = msg.getDate();
+				user = msg.getUser();
+				message = msg.getText();
+				nvMessages +="<div class=\"message\" name=\"messageName\"> ("+heure+") <B>"+user+"</B> : "+message+" </div>";
+			}
+			response.getWriter().write(nvMessages);
 		}
 
-		if (op.equals("refresh")) {
-
-			request.setAttribute("nvMessage", ind);
-			request.setAttribute("listeMessage", facadeChat.messages());
-			request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
+		if (op.equals("nbMessage")){
+			int size;
+			Collection <Message> listeMessage = facadeChat.messages(); 	
+			if (listeMessage==null){
+				size = 0;
+			}else{
+				size=listeMessage.size();
+			}
+			response.setContentType("text/xml");
+			response.getWriter().write(Integer.toString(size));
 		}
-
+		
 	}
 
 }
