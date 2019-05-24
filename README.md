@@ -31,7 +31,7 @@ make install  (takes few minutes)
 
 ## Configure your server
 change conf/nginx.conf by the conf present in the repo -> mv git/nginx.conf ~/nginx/conf  
-create a dir in /tmp called hls and under it hls/live -> mkdir -p "/tmp/hls/live"  
+create a dir in /tmp called hls and under it hls/live -> mkdir -p "/tmp/hls/live1"  "/tmp/hls/live2"  "/tmp/hls/live3"  "/tmp/hls/live4" "/tmp/hls/live5"  
 
 ## Start/stop/reload nginx Server
 
