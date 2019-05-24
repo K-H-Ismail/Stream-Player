@@ -11,6 +11,6 @@ $(window).on('load', function () {
     
     $('#stream-btn').on('click', function () {
         localStorage.setItem('m3u8-link', $('#m3u8-placeholder')[0].value);
-        window.location.href = './streamer';
+        window.location.href = './streamer/index.jsp';
     });
 });

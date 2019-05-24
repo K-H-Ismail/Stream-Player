@@ -39,6 +39,7 @@ public class Servlet extends HttpServlet {
 	public static final String VUE_ACCUEIL = "index.html";
 
 	public static final String VUE_ERR_FORM = "signup/signupError.jsp";
+	public static final String VUE_PROFIL = "pagePerso/profile.jsp";
 	public static final String VUE_ERR_CO = "signup/loginInvalid.jsp";
 	public static final String VUE_ERR_UPLOAD = "pagePerso/uploadError.jsp";
 
@@ -52,8 +53,6 @@ public class Servlet extends HttpServlet {
 	Facade facade = new Facade();
 	@EJB
 	FacadeChat facadeChat = new FacadeChat();
-	
- 
 
 	SimpleDateFormat formatHeure = new SimpleDateFormat("HH:mm");
 	Indicateur ind = new Indicateur();
@@ -109,7 +108,10 @@ public class Servlet extends HttpServlet {
 				/* Si aucune erreur, alors retour à la page d'accueil */
 				request.getRequestDispatcher(VUE_ACCUEIL).forward(request, response);
 			} else {
-				/* Sinon, ré-affichage du formulaire de création avec les erreurs */
+				/*
+				 * Sinon, ré-affichage du formulaire de création avec les
+				 * erreurs
+				 */
 				request.getRequestDispatcher(VUE_ERR_FORM).forward(request, response);
 			}
 		}
@@ -177,7 +179,8 @@ public class Servlet extends HttpServlet {
 			Compte compteCourant = facade.chercherCompte(utilisateur);
 
 			/*
-			 * Lecture du paramètre 'chemin' passé à la servlet via @WebInitParam
+			 * Lecture du paramètre 'chemin' passé à la servlet
+			 * via @WebInitParam
 			 */
 			String chemin = this.getServletConfig().getInitParameter(CHEMIN);
 
@@ -200,6 +203,16 @@ public class Servlet extends HttpServlet {
 				request.getRequestDispatcher(VUE_ERR_UPLOAD).forward(request, response);
 			}
 
+		}
+
+		if (op.equals("profile")) {
+
+			/* Récupération de la session depuis la requête*/
+			HttpSession session = request.getSession();
+			Utilisateur utilisateur = (Utilisateur) session.getAttribute(SESSION_USER);
+			Compte compteCourant = facade.chercherCompte(utilisateur);
+			request.setAttribute("compte", compteCourant);
+			request.getRequestDispatcher(VUE_PROFIL).forward(request, response);
 		}
 
 		if (op.equals("pageCategorie")) {
@@ -252,7 +265,6 @@ public class Servlet extends HttpServlet {
 			request.getRequestDispatcher(VUE_JOIN_SALON).forward(request, response);
 		}
 
-
 		if (op.equals("logout")) {
 
 			/* Récupération et destruction de la session en cours */
@@ -264,9 +276,9 @@ public class Servlet extends HttpServlet {
 		}
 
 		if (op.equals("connectChat")) {
-			int idChat=1;
-			Collection<Chat> chats =facadeChat.chats();
-			if(chats.isEmpty()){
+			int idChat = 1;
+			Collection<Chat> chats = facadeChat.chats();
+			if (chats.isEmpty()) {
 				Chat chat = new Chat();
 				facadeChat.ajoutChat(chat);
 
@@ -281,45 +293,48 @@ public class Servlet extends HttpServlet {
 			String message = request.getParameter("message");
 			String user = request.getParameter("pseudo");
 			String heure = formatHeure.format(now);
-			facadeChat.ajoutMessage(new Message(user, message, heure),idChat);
+			facadeChat.ajoutMessage(new Message(user, message, heure), idChat);
 			response.setContentType("text/xml");
-			response.getWriter().write("<div class=\"message\" name=\"messageName\"> ("+	heure+") <B>"+user+"</B> : "+message+" </div>");
+			response.getWriter().write("<div class=\"message\" name=\"messageName\"> (" + heure + ") <B>" + user
+					+ "</B> : " + message + " </div>");
 		}
-		if (op.equals("refresh")){
-			//request.setAttribute("nvMessage",ind);		
-			//request.setAttribute("listeMessage", facadeChat.messages());			
-			//request.getRequestDispatcher("chat/chatBox.jsp").forward(request, response);
+		if (op.equals("refresh")) {
+			// request.setAttribute("nvMessage",ind);
+			// request.setAttribute("listeMessage", facadeChat.messages());
+			// request.getRequestDispatcher("chat/chatBox.jsp").forward(request,
+			// response);
 			response.setContentType("text/xml");
-			int idChat=Integer.parseInt(request.getParameter("idChat"));
+			int idChat = Integer.parseInt(request.getParameter("idChat"));
 
 			int indice = Integer.parseInt(request.getParameter("ind"));
-			Collection <Message> listeMessage = facadeChat.messagesInd(indice,idChat); 
-			String nvMessages = new String() ;
+			Collection<Message> listeMessage = facadeChat.messagesInd(indice, idChat);
+			String nvMessages = new String();
 			String message;
 			String user;
 			String heure;
-			for (Message msg : listeMessage){
+			for (Message msg : listeMessage) {
 				heure = msg.getDate();
 				user = msg.getUser();
 				message = msg.getText();
-				nvMessages +="<div class=\"message\" name=\"messageName\"> ("+heure+") <B>"+user+"</B> : "+message+" </div>";
+				nvMessages += "<div class=\"message\" name=\"messageName\"> (" + heure + ") <B>" + user + "</B> : "
+						+ message + " </div>";
 			}
 			response.getWriter().write(nvMessages);
 		}
 
-		if (op.equals("nbMessage")){
-			int idChat=1;
+		if (op.equals("nbMessage")) {
+			int idChat = 1;
 			int size;
-			Collection <Message> listeMessage = facadeChat.messages(idChat); 	
-			if (listeMessage.isEmpty()){
+			Collection<Message> listeMessage = facadeChat.messages(idChat);
+			if (listeMessage.isEmpty()) {
 				size = 0;
-			}else{
-				size=listeMessage.size();
+			} else {
+				size = listeMessage.size();
 			}
 			response.setContentType("text/xml");
 			response.getWriter().write(Integer.toString(size));
 		}
-		
+
 	}
 
 }

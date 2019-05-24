@@ -10,7 +10,7 @@
 <body>
 	<div class="topnav">
 		<a class="active" href="index.html">Accueil</a> 
-		<a href="pagePerso/profile.jsp">Profil</a>
+		<a href="Servlet?op=profile">Profil</a>
 		<div class="topnav-right">
 			<a href="Servlet?op=logout">Se déconnecter</a>
 		</div>
@@ -21,7 +21,7 @@
 			Compte compte = (Compte) session.getAttribute("compte");
 			String login = (String) compte.getLogin();
 		%>
-		<!--<h1>Welcome <%=login%></h1>-->
+		<h1>Welcome <%=login%></h1>
 
 		<form class="searchform cf" method="post" action="Servlet">
 			<input type="text" name="login" placeholder="S'abonner">
@@ -30,17 +30,17 @@
 		</form>
 		
 		<form method="post" action="Servlet">
-        	<button type="submit" formaction="pagePerso/upload.jsp">Upload Fichier</button>
+        	<button style="top: 20%;" class ="searchform" type="submit" formaction="pagePerso/upload.jsp">Upload Fichier</button>
       	</form>
       	
   
       	<form method="post" action="Servlet">
-        	<button type="submit">Créer un salon</button>
+        	<button style="top: 30%;" class ="searchform" type="submit">Créer un salon</button>
         	<input type="hidden" type="text" name="op" value="creerSalon">
       	</form>
       	
       	<form method="post" action="Servlet">
-        	<button type="submit">Rejoindre un salon</button>
+        	<button style="top: 40%;" class ="searchform" type="submit">Rejoindre un salon</button>
         	<input type="hidden" type="text" name="op" value="rejoindreSalon">
       	</form>
       	
