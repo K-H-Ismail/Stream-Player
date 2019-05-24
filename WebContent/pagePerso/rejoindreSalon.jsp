@@ -13,8 +13,10 @@ Liste des salons: <br>
 		for (Salon s : listeSalons) {
 			String nomSalon = s.getNom();
 			String lienSalon = s.getLien();
-	%>
-	   		<%=nomSalon%> : <a href="<%=lienSalon %>"><%=lienSalon %></a> <br> 
+			boolean isOpen = s.isOpen();
+			if (isOpen) { %>
+	  			<%=nomSalon%> : <a href="<%=lienSalon %>"><%=lienSalon %></a> <br> 
+	   	  <%} %>
 	  <%}%>
 	<%} %>
 

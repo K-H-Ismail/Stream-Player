@@ -49,8 +49,7 @@ public final class UploadFichier {
             Part part = request.getPart( CHAMP_FICHIER );
             /*
              * Il faut déterminer s'il s'agit bien d'un champ de type fichier :
-             * on délègue cette opération à la méthode utilitaire
-             * getNomFichier().
+             * on délègue cette opération à la méthode utilitaire getNomFichier().
              */
             nomFichier = getNomFichier( part );
 
@@ -226,8 +225,7 @@ public final class UploadFichier {
                     TAILLE_TAMPON );
 
             /*
-             * Lit le fichier reçu et écrit son contenu dans un fichier sur le
-             * disque.
+             * Lit le fichier reçu et écrit son contenu dans un fichier sur le disque.
              */
             byte[] tampon = new byte[TAILLE_TAMPON];
             int longueur = 0;

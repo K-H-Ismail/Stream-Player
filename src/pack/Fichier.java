@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Fichier {
@@ -13,8 +14,10 @@ public class Fichier {
 	private int num;
     private String description;
     private String nom;
-
     
+    @ManyToOne
+    private Compte proprietaire;
+
     public Fichier() {
     }
     
@@ -37,4 +40,12 @@ public class Fichier {
     public void setNom( String nom ) {
         this.nom = nom;
     }
+
+	public Compte getProprietaire() {
+		return proprietaire;
+	}
+
+	public void setProprietaire(Compte proprietaire) {
+		this.proprietaire = proprietaire;
+	}
 }

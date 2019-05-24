@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="pack.Compte"%>
+    pageEncoding="UTF-8" import="pack.Compte, java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,8 +12,17 @@
 		Compte compte = (Compte) session.getAttribute("compte");
 		String image = (String) compte.getImage();
 		String login = (String) compte.getLogin();
+		List<Compte> souscriptions = compte.getSouscriptions();
 	%>
 	<h1> <%=login %>'s Profile</h1>
-	<img class="avatar" src=<%=image %> alt="profile picture" width="150" height="150" />
+	<img class="avatar" src=<%=image %> alt="profile picture" width="150" height="150" /> <br>
+	
+	<h2>Mes souscriptions:</h2> 
+	<% for (Compte c : souscriptions) {
+	      	String nom = c.getLogin(); %>
+			<%=nom %> <br>
+	 <%} %>
+	
+	
 </body>
 </html>

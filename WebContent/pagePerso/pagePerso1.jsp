@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="pack.Utilisateur"%>
+	pageEncoding="UTF-8" import="pack.Compte, pack.Salon"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,15 +18,15 @@
 	</div>
 	<center>
 		<%
-			Utilisateur utilisateur = (Utilisateur) session.getAttribute("sessionUtilisateur");
-			String login = (String) utilisateur.getLogin();
+			Compte compte = (Compte) session.getAttribute("compte");
+			String login = (String) compte.getLogin();
 		%>
 		<h1>Welcome <%=login%></h1>
 
 		<form class="searchform cf" method="post" action="Servlet">
-			<input type="text" name="login" placeholder="Ajouter un ami">
-			<button type="submit">Ajouter</button>
-			<input type="hidden" type="text" name="op" value="add_friend">
+			<input type="text" name="login" placeholder="S'abonner">
+			<button type="submit">Souscrire</button>
+			<input type="hidden" type="text" name="op" value="souscrire">
 		</form>
 		
 		<form>
@@ -42,7 +42,7 @@
         	<button type="submit">Rejoindre un salon</button>
         	<input type="hidden" type="text" name="op" value="rejoindreSalon">
       	</form>
-
+      	
 	</center>
 
 </body>

@@ -16,14 +16,14 @@
 		</p>
 		<p>
 			<label for="choose-categorie">Choisir une catégorie:</label> 
-			<select	id="choose-categorie" name="categorie" size="1">
+			<select	id="choose-categorie" name="categorie" size="2" multiple>
 				<%
 					Collection<Categorie> listeCategorie = (Collection<Categorie>) request.getAttribute("listeC");
 					if (!listeCategorie.isEmpty()) {
 						for (Categorie c : listeCategorie) {
 							String s = c.getNom();
 						%> 
-							<option> <%=s%> </option>		
+							<option value="<%=s%>"> <%=s%> </option>		
 						<%}%>
 					<%} %>
 			</select>
@@ -36,6 +36,8 @@
 		<button type="submit">Ajouter Catégorie</button>
 		<input type="hidden" name="op" value="pageCategorie">
 	</form>
+	
+	<p>Maintenir la touche Ctrl pour saisir plusieurs choix.</p>
 	
 </body>
 </html>

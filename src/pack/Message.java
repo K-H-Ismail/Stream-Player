@@ -10,8 +10,8 @@ public class Message {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	
 	int id;
+	
 	String user;
 	String text;
 	String date;

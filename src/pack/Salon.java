@@ -1,10 +1,14 @@
 package pack;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,16 +21,20 @@ public class Salon {
 	private String nom;
 	private String lien;
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	private Categorie categorie;
+	@ManyToMany
+	private List<Categorie> categories;
+	
+	@OneToOne
+	private Compte streamer;
+	
 	
 	public Salon() {
 	}
 	
-	public Salon(String nom, String lien, Categorie categorie) {
+	public Salon(String nom, String lien, List<Categorie> categories) {
 		this.nom = nom;
 		this.lien = lien;
-		this.categorie = categorie;
+		this.categories = categories;
 	}
 	
 	public int getNum() {
@@ -47,11 +55,19 @@ public class Salon {
 		this.lien = lien;
 	}
 
-	public Categorie getCategorie() {
-		return categorie;
+	public List<Categorie> getCategories() {
+		return categories;
 	}
 
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
+	public void setCategories(List<Categorie> categories) {
+		this.categories = categories;
 	}
+	
+	public Compte getStreamer() {
+		return streamer;
+	}
+	public void setStreamer(Compte streamer) {
+		this.streamer = streamer;
+	}
+
 }

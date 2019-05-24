@@ -1,9 +1,12 @@
 package pack;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Categorie {
@@ -11,6 +14,8 @@ public class Categorie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int num;
 	private String nom;
+	private String description;
+	
 	
 	public Categorie() {
 	}
@@ -28,5 +33,13 @@ public class Categorie {
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
